@@ -1,16 +1,28 @@
-Progetto di Rudy Savini:
+This is my first project i've done with ITS FITSTIC in Modena.
 
-Durante la lavorazione al progetto, passando dal pc portatile al pc fisso (usando sempre vscode/codium), mi richiedeva di installare nel terminale, probabilmente per un errata installazione da parte mia.
-	django
-	crispy_forms
-	bootstrap5
-Se per caso a voi non va, basta installarli tutti e 3, non so perchè mi dia questi problemi, spero non sia grave per la valutazione.
+The Object of this project was to build a simple website with Django as BackEnd and HTML - CSS - JS and Bootsrap as FrontEnd
 
-Questi comandi funzionano tutti:
-	python manage.py makemigrations
-	python manage.py migrate
-	python manage.py runserver
+Requirements for the BackEnd side:
+1. At least 1 App besides the main Django App
+2. At least 2 Models with 4 attributes and at least 1 ForeignKey
+3. At least 1 view for the following class-based view
+   -ListView
+   -DetailView
+   -CreateView
+   -UpdateView
+   -DeleteView
+4. At least 1 view defined with a function
 
-Il SUPERUSER è già stato creato e non eliminato per velocizzare i tempi:
-	username: admin
-	password: admin
+Requirements for FrontEnd side
+1. Base template with { % extends % } as a modular approach to extends the base.html page
+2. Navigation menu
+3. Responsive WebSite with mobile-first approach: at least 1 breakpoint
+4. Using Bootstrap for the graphic
+
+Optional:
+-User Account and login functionality
+-JS and CSS Customisation
+  -AJAX
+  -Flexbox or Grid System
+-Django Crispy Forms
+-Accessibility
