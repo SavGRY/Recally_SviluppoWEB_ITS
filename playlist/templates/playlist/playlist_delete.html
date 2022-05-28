@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title  %}Elimina la tua Playlist!{% endblock %}
+{% block contenuto %}
+
+<div class="text-center">
+    <h1 class="text-white">Playlist eliminata con successo</h1>
+    <form method="post"> {% csrf_token %}
+        {{ form }} 
+        <input type="submit" class="btn btn-lg m-auto btn_pers"  value="Conferma"></button>
+    </form>
+</div>
+{% endblock %}

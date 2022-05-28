@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title  %}Dettaglio{% endblock %}
+
+{% block contenuto %}
+<h1 class="text-center text-white display-5 mt-0">Ecco i dettagli di questa Playlist</h1>
+<div class="table-responsive table-perso">
+    <table class="table text-white table-bordered">
+        <thead>
+            <tr class="bg-light text-dark">
+                <th scope="col">NOME</th>
+                <th scope="col">CREATORE</th>
+                <th scope="col">DATA DI CREAZIONE</th>
+                <th scope="col">NOTE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td title="NOME">{{playlist.Nome}}</td>
+                <td title="CREATORE">{{playlist.Owner}}</td>
+                <td title="ANNO DI CREAZIONE">{{playlist.anno}}</td>
+                {% if playlist.Note is not null %}
+                    <td title="NOTE">{{playlist.Note}}</td>
+                {% else %}
+                    <td title="NOTE">&nbsp;</td>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+    <div class="mt-5">
+        {% if playlist.Owner == request.user %}
+            <a href={% url 'playlist:song_create' playlist.id %} class="btn btn-lg btn_pers mb-3" aria-label="Aggiungi Canzoni" title="Aggiungi Canzoni">Aggiungi una canzone</a>
+            <a href={% url 'playlist:playlist_list' %} type="button" class="btn btn-lg btn_pers mb-3">Torna alle Playlist</a>
+            <a href={% url 'playlist:home' %} class="btn btn-lg btn_pers mb-3">Torna alla Home</a>
+        {% else %}
+            <a href={% url 'playlist:playlist_list' %} class="btn btn-lg btn_pers mb-3">Torna alle Playlist</a>
+            <a href={% url 'playlist:home' %} class="btn btn-lg btn_pers mb-3">Torna alla Home</a>
+            <a type="button" class="btn btn-lg btn_pers mb-3" id="btn_logout">Logout</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title  %}Tutte le Playlist!{% endblock %}
+{% block contenuto %}
+<h1 class="text-center text-white display-5 mt-0">Ecco tutte le Playlist</h1>
+{% if object_list %}
+<div class="table-responsive table-perso">
+    <table class="table text-white table-bordered">
+        <thead>
+            <tr class="bg-light text-dark">
+                <th scope="col">NOME</th>
+                <th scope="col">DATA DI CREAZIONE</th>
+                <th scope="col">CREATORE</th>
+                <th scope="col">NOTE</th>
+                <th scope="col">DETTAGLI</th>
+                <th scope="col">AZIONI</th>
+            </tr>
+        </thead>
+        {%else%}
+        <div class="container text-center">
+            <img src="{% static 'WebApp/img/cute_gattino.png' %}" alt="Nothing to see" title="Nothing to see" class="img-fluid w-75">
+        </div>
+        {%endif%}
+        {% for playlist in object_list %}
+        <tbody>
+            <tr>
+                <td title="NOME">{{playlist.Nome}}</td>
+                <td title="ANNO">{{playlist.anno}}</td>
+                <td title="CREATORE">{{playlist.Owner}}</td>
+                {% if playlist.Note is not null %}
+                    <td title="NOTE">{{playlist.Note}}</td>
+                {% else %}
+                    <td title="NOTE">&nbsp;</td>
+                {% endif %}
+                <td title="DETTAGLI"><a href="{% url 'playlist:playlist_detail' playlist.id %}"class="btn_dettagli" aria-label="Dettagli" title="Dettagli Playlist">Dettagli</a></td>
+                {% if playlist.Owner == user %}
+                <td title="AZIONI">
+                    <a href="{% url 'playlist:song_list' playlist.id %}" class="btn btn_song_list" aria-label="Lista Canzoni" title="Lista Canzoni"><img src="{% static 'WebApp/img/list-ul.svg' %}" alt="Lista Canzoni"></a>
+                    <a href="{% url 'playlist:song_create' playlist.id %}" class="btn btn_aggiungi" aria-label="Aggiungi Canzoni" title="Aggiungi Canzoni"><img src="{% static 'WebApp/img/plus-circle.svg' %}" alt="Aggiungi Canzone"></a>
+                    <a href="{% url 'playlist:playlist_update' playlist.id %}" class="btn btn_impostazioni" aria-label="Aggiorna la Playlist" title="Aggiorna La Playlist"><img src="{% static 'WebApp/img/gear.svg' %}" alt="Modifica"></a>
+                    <a href="{% url 'playlist:playlist_list' %}" class="btn btn_elimina" aria-label="Elimina la Playlist" title="Elimina la Playlist" data-bs-toggle="modal" data-bs-target="#delete_model"><img src="{% static 'WebApp/img/trash.svg' %}" alt="Elimina"></a>
+                </td>
+                {% else %}
+                <td title="AZIONI">
+                    <a href="{% url 'playlist:song_list' playlist.id %}" class="btn btn_song_list"><img src="{% static 'WebApp/img/list-ul.svg' %}" aria-label="Lista Canzoni" title="Lista Canzoni"></a>
+                </td>
+                {% endif %}
+            </tr>
+        </tbody>
+
+        <!--Modal-->
+        <div class="modal fade text-start" id="delete_model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="delete_modal_label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="delete_modal_label">Sei Sicuro di eliminare questa playlist?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Se premi su ELIMINA la eliminerai definitivamente</h6> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn_pers bg-dark bg-opacity-50" data-bs-dismiss="modal">No, ci penso</button>
+                        <a type="button" href="{% url 'playlist:playlist_delete' playlist.id %}" class="btn btn_pers" id="btn_elimina" alt="Elimina">Elimina</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </table>
+</div>
+<div class="contrainer text-center">
+    <a href={% url 'playlist:playlist_create' %} type="button" class="btn btn-lg m-auto btn_pers">Crea una nuova Playlist</a>
+    <a href={% url 'playlist:home' %} type="button" class="btn btn-lg m-auto btn_pers">Torna alla Home</a>
+</div>
+{% endblock %}

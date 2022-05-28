@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'WebApp/css/bootstrap.css' %}"
+    /> 
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="{% static 'WebApp/css/my_style.css' %}"
+    /> 
+
+    <title>{%block title %} {%endblock%}</title>
+</head>
+<body style="background-color: black;">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark navbar-custom d-flex">
+        <div class="container-fluid">
+            <img src="{% static 'WebApp/img/logo.png' %}" alt="Recally Logo!" title="Recally Logo" class="img-fluid rounded float-left d-block d-none d-sm-block" width="100">
+            <a class="navbar-brand m-auto" href="{% url 'home_page' %}" alria-label="Recally Save Your Vibes" title="Recally Save Your Vibes">Recally - Save Your Vibes</a>
+            <button class="navbar-toggler" 
+                    type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#mobileMenu"
+                    aria-controls="mobileMenu" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mobileMenu">
+                <ul class="navbar-nav ms-auto text-center">
+                    <li class="nav-item">
+                        <a class="nav-link active testo-home" aria-current="page" href="{% url 'home_page' %}" alria-label="Home" title="Home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active testo-home" href="{% url 'home_page' %}#chisiamo_id" alria-label="Chi Siamo" title="Chi Siamo">Chi Siamo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active testo-home" href="{% url 'contact:home_contact' %}" alria-label="Contatti" title="Contatti">Contatti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active testo-home" href="{% url 'privacy' %}" alria-label="Privacy Policy" title="Privacy Policy">Privacy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active testo-home" href="{% url 'playlist:home' %}" alria-label="La tua Playlist" title="La tua Playlist">La tua Playlist</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {%block contenuto%}
+    {%endblock%}
+    <script src= {% static 'WebApp/js/jquery-3.6.0.min.js' %}></script>
+    <script src= {% static 'WebApp/js/bootstrap.js' %}></script>
+    <script src= {% static 'WebApp/js/actions.js' %}></script>
+</body>
+<footer class="site-footer mt-auto py-4 text-white">
+    <div class="container text-center">
+        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+            <div class="col-auto">
+                <span class="footer-testo">© Rudy Savini - Progetto Sviluppo Web Client / Server 2022</span>
+            </div>
+            <div class="col-auto">
+                <span>Contatti:</span>
+            <div class="row">
+                    <a class ="text-white" href="mailto:rudy.savini@fitstic-edu.com">Gmail</a>
+                </div>
+                <div class="row">
+                    <a class ="text-white" href="https://www.linkedin.com/in/rudy-savini/">LinkedIn</a>
+                </div>
+            </div>
+            <div class="col-auto">
+                <a class="btn text-white" href="#">Torna su</a>
+                <a class="btn text-white" href={% url 'home_page' %}>Torna alla Home</a>
+            </div>
+    </div>
+</footer>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block title  %}Aggiungi la tua Playlist{% endblock %}
+{% block contenuto %}
+
+<h1 class="text-white text-center">Crea La Tua Raccolta</h1>
+<form method="post" class="m-auto mt-4 w-50 text-white"> {% csrf_token %}
+    {{ form|crispy }}
+    <div class="col-md-12 text-center">
+        <input type="submit" class="btn btn-lg m-auto btn_pers" id="btn_details" value="Conferma"></input>
+        <a href={% url 'playlist:home' %} class="btn btn-lg btn_pers mt-3 mb-3">Torna alla Home</a>
+        <button type="button" class="btn btn-lg m-auto btn_pers" data-bs-toggle="modal" data-bs-target="#logout_model" >Logout</button>
+    </div>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="logout_model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="logout_modal_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logout_modal_label">Sei Sicuro di voler uscire?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>Se premi su logout verrai disconnesso</h6> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn_pers bg-dark bg-opacity-50" data-bs-dismiss="modal">No, ci penso</button>
+                <button type="button" class="btn btn_pers" id="btn_logout">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

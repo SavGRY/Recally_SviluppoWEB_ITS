@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block title  %}Aggiungi la tua Canzone{% endblock %}
+{% block contenuto %}
+<h1 class="text-center text-white display-5 mt-0">Aggiungi una canzone!</h1>
+<form method="post" class="m-auto mt-4 w-50 text-white"> {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" class="btn btn-lg m-auto btn_pers" id="btn_details" value="Conferma"></input>
+</form>
+<div class="text-center">
+    <button type="button" class="btn btn-lg m-auto btn_pers" id="btn_playlist_home">Torna alla Home</button>
+    <a type="button" class="btn btn-lg m-auto btn_pers" href={% url 'playlist:playlist_list' %}>Torna alle Playlist</a>
+</div>
+
+{% endblock %}

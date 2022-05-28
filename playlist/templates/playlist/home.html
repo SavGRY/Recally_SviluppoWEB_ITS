@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title  %}Aggiungi la tua Playlist!{% endblock %}
+
+{% block contenuto %}
+{% if user.is_authenticated %}
+<h1 class="text-white text-center display-3">Benvenuto {{user.username}}</h1>
+<h2 class="text-center text-white display-6">Queste sono tutte le azioni che puoi fare</h2>
+<div class="table-responsive ms-auto me-auto mt-3" alt="Tabella con le azioni disponibili" title="Tabella con le azioni disponibili">
+    <table class="table text-white table-borderless table-responsive">
+        <thead class="text-center table-light text-black">
+            <tr>
+                <th scope="col">ICONA</th>
+                <th scope="col">AZIONE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr alt="Azione Lista Canzoni" title="Azione Lista Canzoni">
+                <th scope="row"><img src="{% static 'WebApp/img/list-ul.svg' %}" alt="Lista Canzoni" class="btn_song_list"width="50px"></th>
+                <td class="text-center" style="padding-top: 1.5rem;">Vedi la Lista Canzoni</td>
+            </tr>
+            <tr alt="Azione Aggiungi Canzoni" title="Azione Aggiungi Canzoni">
+                <th scope="row"><img src="{% static 'WebApp/img/plus-circle.svg' %}" alt="Aggiungi Canzone" class="btn_aggiungi"width="50px"></th>
+                <td class="text-center" style="padding-top: 1.5rem;">Aggiungi le Canzoni alla Playlist</td>
+            </tr>
+            <tr alt="Azione Aggiorna i Dati Playlist" title="Azione Aggiorna i Dati Playlist">
+                <th scope="row"><img src="{% static 'WebApp/img/gear.svg' %}" alt="Modifica" class="btn_impostazioni"width="50px"></th>
+                <td class="text-center" style="padding-top: 1.5rem;">Aggiorna i dati della Playlist</td>
+            </tr>
+            <tr alt="Elimina Playlist" title="Elimina Playlist">
+                <th scope="row"><img src="{% static 'WebApp/img/trash.svg' %}" alt="Elimina" class="btn_elimina" width="50px"></th>
+                <td class="text-center" style="padding-top: 1.5rem;">Elimina la Playlist</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="text-center my-3">
+    <a href="{% url 'playlist:playlist_list' %}"type="button" class="btn btn-lg m-auto btn_pers mb-3" id="btn_playlist_list">Lista Playlist</a>
+    <a href="{% url 'playlist:playlist_create' %}"type="button" class="btn btn-lg m-auto btn_pers mb-3" id="btn_playlist_create">Crea</a>
+    <a type="button" class="btn btn-lg m-auto btn_pers mb-3" id="btn_home">Torna alla Home Page</a>    
+    <button type="button" class="btn btn-lg m-auto btn_pers mb-3" data-bs-toggle="modal" data-bs-target="#logout_model" >Logout</button>
+</div>
+{% else %}
+<h1 class ="text-white text-center">Devi prima fare il login o registrarti</h1>
+<div class="row align-text-center">
+    <div class="col text-center">
+        <a href="{% url 'login' %}" type="button" class="btn btn-lg m-auto btn_pers mb-3" id="btn_login">Login</a>
+        <a href="{% url 'user_create' %}" type="button" class="btn btn-lg m-auto btn_pers mb-3" id="btn_register">Registrati</a>
+        <a type="button" class="btn btn-lg m-auto btn_pers mb-3" id="btn_home">Torna alla Home Page</a>    
+    </div>
+</div>
+{% endif %}
+
+<!-- Modal -->
+<div class="modal fade" id="logout_model" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="logout_modal_label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logout_modal_label">Sei Sicuro di voler uscire?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>Se premi su logout verrai disconnesso</h6> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn_pers bg-dark bg-opacity-50" data-bs-dismiss="modal">No, ci penso</button>
+                <button type="button" class="btn btn_pers" id="btn_logout">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

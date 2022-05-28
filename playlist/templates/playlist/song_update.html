@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+{% block title  %}Aggiorna la tua Canzone{% endblock %}
+{% block contenuto %}
+
+<h1 class="text-center text-white display-5 mt-0">Aggiorna i dettagli della Canzone</h1>
+<form method="post" class="m-auto mt-4 w-50 text-white"> {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" class="btn btn-lg m-auto btn_pers" id="btn_song_list" value="Conferma"></input>
+</form>
+<div class="container text-center">
+    <a href={% url 'playlist:playlist_list' %} class="btn btn-lg btn_pers" >Torna Alle Playlist</a>
+    <a class="btn btn-lg btn_pers" id="btn_indietro" >Torna Alle Canzoni</a>
+</div>
+{% endblock %}

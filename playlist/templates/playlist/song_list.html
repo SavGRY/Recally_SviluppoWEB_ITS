@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title  %}Tutte le Canzoni{% endblock %}
+{% block contenuto %}
+
+<h1 class="text-center text-white display-5 mt-0">Ecco tutte le canzoni in questa Playlist</h1>
+{% if object_list %}
+<div class="table-responsive table-perso my-4">
+    <table class="table text-white table-bordered">
+        <thead>
+            <tr class="bg-light text-dark">
+                <th scope="col">AUTORE E TITOLO</th>
+                <th scope="col">GENERE</th>
+                <th scope="col">ANNO</th>
+                <th scope="col">NOTE</th>
+                <th scope="col">PLAYLIST</th>
+                <th scope="col">AZIONI</th>
+            </tr>
+        </thead>
+        {%else%}
+        <div class="container text-center">
+            <img src="{% static 'WebApp/img/cute_gattino.png' %}" alt="Nothing to see" title="Nothing to see" class="img-fluid w-75">
+        </div>
+        {%endif%}
+        {% if canzone.Playlist.id == Playlist.id %}
+        {% for canzone in object_list %}
+        <tbody>
+            <tr>
+                <td title="AUTORE E TITOLO">{{canzone.Autore}} - {{canzone.Titolo}}</td>
+                <td title="GENERE">{{canzone.Genere}}</td>
+                <td title="ANNO">{{canzone.get_anno}}</td>
+                <td title="NOTE">{{canzone.Note}}</td>
+                <td title="PLAYLIST">{{canzone.Playlist.nome}}</td>
+                <td title="AZIONI">
+                    {% if canzone.Playlist.Owner == request.user %}
+                        <a href="{% url 'playlist:song_update' canzone.id %}" class="btn btn_impostazioni" aria-label="Aggiorna la Canzone" title="Aggiorna La Canzone"><img src="{% static 'WebApp/img/gear.svg' %}" alt="Modifica"></a>
+                        <a href="{% url 'playlist:song_delete' canzone.id %}" class="btn btn_elimina" aria-label="Elimina la Canzone" title="Elimina la Canzone"><img src="{% static 'WebApp/img/trash.svg' %}" alt="Elimina"></a>
+                    {% else %}
+                        <span>Nessuna Azione Possibile</span>
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <div class=" text-center mt-5">
+        <a href={% url 'playlist:playlist_list' %} type="button" class="btn btn-lg btn_pers mb-3" >Torna Alle Playlist</a>
+        <a href={% url 'playlist:home' %} type="button" class="btn btn-lg btn_pers mb-3">Torna alla Home</a><br>
+    </div>
+</div>
+{% endblock %}

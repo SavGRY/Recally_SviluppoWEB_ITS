@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title  %}Home Page{% endblock %}
+
+{% block contenuto%} 
+
+<div class="container-fluid custom-div">
+    <div class="flex-row">
+        <div class="flex-col text-center">
+            <img src="{% static 'WebApp/img/audio-cassette.png' %}" alt="Musicassetta" title="Musicassetta" class="img-fluid custom">
+        </div>
+        <div class="flex-col">
+            <h1 class="display-2 text-center text-black">Personalizza la tua playlist!</h1>
+            <h3 class="display-8 text-center text-black">Effettua il Login o Registrati</h3>
+            <div class="justify-content-center text-center">
+                <button type="button" class="btn btn-lg m-auto btn_pers" id="btn_login" alria-label="Login" title="Login">Login</button>
+                <button type="button" class="btn btn-lg m-auto btn_pers" id="btn_register" alria-label="Registrati" title="Registrati">Registrati</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid custom2">
+    <div class="row align-text-center">
+        <h1 class="text-center text-white chisiamo" id="chisiamo_id">Chi Siamo e Cosa Facciamo</h1>
+    </div>
+    <div class="row">
+        <div class="col d-sm-none d-x d-md-block d-none d-sm-block">
+            <img src="{% static 'WebApp/img/contact-us-showcase.png' %}" alt="Immagine standard di una donna disegnata che sta messaggiando" title="Immagine standard di una donna disegnata che sta messaggiando" class="img-fluid immagine2">
+        </div>
+        <div class="col">
+            <p class="text-white perso2 lh-sm">Sono Rudy Savini e questo è il mio progetto.<br>
+                Recally nasce dall'esigenza di dover creare un progetto per il corso ITS del modulo di sviluppo Web Front e Back-End<br>
+                L'idea del progetto è basata sulle direttive obbligatorie date dai due professori Grandi e Uffreduzzi, per questo è nato Recally: <br>
+                un sito dove l' utente potesse creare la sua personale playlist musicale inserendo:
+            </p>
+            <div>
+                <ul>
+                    <li>
+                        <span class="testo-span" alt="Titolo della Canzone" title="Titolo della canzone">Titolo della canzone</span>
+                    </li>
+                    <li>
+                        <span class="testo-span" alt="Artista" title="Artista">Artista</span>
+                    </li>
+                    <li>
+                        <span class="testo-span" alt="Genere" title="Genere">Genere</span>
+                    </li> 
+                    <li>
+                        <span class="testo-span" alt="Note Generali" title="Note Generali">Note generali</span>
+                    </li>
+                </ul> 
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

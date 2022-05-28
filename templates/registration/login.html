@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block title %}Login{% endblock %}
+
+{% block contenuto %}
+<h1 class="text-white text-center">Fai il Login</h1>
+    <form class="m-auto mt-4 w-50 text-white" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+    <input type="submit" class="btn btn-lg m-auto btn_pers" value="Login">
+    </form>
+<button type="button" class="btn btn-lg m-auto btn_pers" id="btn_indietro">Indietro</button>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title  %}Elimina la tua Canzone{% endblock %}
+{% block contenuto %}
+
+<h1 class="text-white text-center">Sei sicuro di voler eliminare?</h1>
+<form method="post" class="m-auto mt-4 w-50 text-white text-center"> {% csrf_token %}
+    {{ form }}
+    <input type="submit" class="btn btn-lg m-auto btn_pers" id="btn_song_list" value="Conferma"></input>
+</form> {% csrf_token %}
+
+{% endblock %}

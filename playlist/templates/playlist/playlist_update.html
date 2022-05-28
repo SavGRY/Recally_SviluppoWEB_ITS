@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block title  %}Aggiorna la tua Playlist!{% endblock %}
+{% block contenuto %}
+
+<h1 class="text-white text-center">Aggiorna i dati della Playlist</h1>
+<form method="post" class="m-auto mt-4 w-50 text-white"> {% csrf_token %}
+    {{ form|crispy}}
+    <input type="submit" class="btn btn-lg m-auto btn_pers" id="btn_details" value="Conferma"></input>
+</form>
+<a type="button" class="btn btn-lg m-auto btn_pers" href={% url 'playlist:playlist_list' %}>Torna Alle Playlist</a>
+
+{% endblock %}
